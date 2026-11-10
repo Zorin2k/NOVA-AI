@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: nova-ai-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install --omit=dev
+    startCommand: node server.mjs
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: OPENAI_MODEL
+        value: gpt-6-luna
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: NOVA_APP_PASSWORD
+        sync: false
+      - key: NOVA_SESSION_SECRET
+        generateValue: true
